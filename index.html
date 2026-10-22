@@ -1,0 +1,50 @@
+<!doctype html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="theme-color" content="#172b35" />
+  <title>Последняя пара — графический дизайн в СПбГУПТД</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <main class="shell">
+    <header class="site-header">
+      <div class="brand"><span class="brand-mark">ПП<span class="spark">✦</span></span><div><span class="overline">ИГРА · СПбГУПТД · ГРАФИЧЕСКИЙ ДИЗАЙН</span><h1>Последняя пара<span class="period">.</span></h1></div></div>
+      <div class="header-note">4 ГЛАВЫ<br>1 ДЕДЛАЙН<br>МНОГО МАКЕТОВ</div>
+    </header>
+
+    <section class="game-frame" aria-label="Игра Последняя пара">
+      <div class="game-hud" aria-live="polite">
+        <div class="hud-unit"><span>ГЛАВА</span><strong id="level-label">01 / 04 · ДВОР</strong></div>
+        <div class="hud-unit"><span>МАТЕРИАЛЫ</span><strong id="items-label">0 / 3</strong></div>
+        <div class="hud-unit"><span>ДО ЗАЩИТЫ</span><strong id="time-label">02:45</strong></div>
+        <div class="hud-unit"><span>ПОПЫТКИ</span><strong id="hearts-label" class="hearts">♥♥♥</strong></div>
+        <div class="hud-unit"><span>ЛУЧШЕЕ</span><strong id="best-label">Пока нет</strong></div>
+      </div>
+      <div class="viewport">
+        <canvas id="game" width="960" height="540" aria-label="Платформер о студентке графического дизайна"></canvas>
+        <div id="overlay" class="overlay" aria-live="polite"><div class="overlay-card"><span id="overlay-kicker" class="overlay-kicker">ДЕНЬ ЗАЩИТЫ</span><h2 id="overlay-title">Последняя пара</h2><p id="overlay-text">Собери материалы и успей на защиту.</p><button id="overlay-action" class="primary" type="button">Начать игру <span>→</span></button></div></div>
+      </div>
+      <div class="toolbar"><div class="actions"><button id="pause-btn" type="button">⏸ Пауза</button><button id="restart-btn" type="button">↻ Сначала</button><button id="sound-btn" type="button" aria-pressed="false">♪ Звук выкл.</button><button id="skins-btn" type="button">✦ Образы</button><button id="chapters-btn" type="button">Маршрут: 1 / 4</button></div><span id="status" class="status">Собери три материала и найди выход</span></div>
+      <div class="mobile-controls" aria-label="Экранное управление"><div class="direction-controls"><button type="button" data-control="left" aria-label="Влево">←</button><button type="button" data-control="right" aria-label="Вправо">→</button></div><button type="button" data-control="jump" class="jump-control" aria-label="Прыжок">ПРЫЖОК ↑</button></div>
+    </section>
+
+    <section class="below-game"><div><span class="overline">ПЛАН НА СЕГОДНЯ</span><p>Двор → коридоры → мастерская → защита → собственный постер</p></div><div><span class="overline">УПРАВЛЕНИЕ</span><p>← → / A D — идти · Пробел / W / ↑ — прыгать · P / Esc — пауза</p></div></section>
+    <footer class="footnote">Художественная версия студенческого дня · Санкт-Петербург, Большая Морская, 18</footer>
+  </main>
+
+  <dialog id="skins-dialog" class="selection-dialog"><div class="dialog-head"><div><span class="overline">ГАРДЕРОБ</span><h2>Выбери образ</h2></div><button type="button" data-close="skins-dialog" aria-label="Закрыть">×</button></div><p>Новые образы открываются после прохождения глав.</p><div id="skin-options" class="option-grid"></div></dialog>
+  <dialog id="chapters-dialog" class="selection-dialog"><div class="dialog-head"><div><span class="overline">КАРТА КАМПУСА</span><h2>Выбери главу</h2></div><button type="button" data-close="chapters-dialog" aria-label="Закрыть">×</button></div><p>Пройденные главы можно начать заново. Полная оценка получается за маршрут с самого начала.</p><div id="chapter-options" class="chapter-grid"></div></dialog>
+
+  <section id="poster-studio" class="poster-studio hidden" aria-label="Финальная мастерская постера">
+    <div class="studio-shell"><header class="studio-header"><div><span class="overline">ФИНАЛЬНОЕ ЗАДАНИЕ · ГРАФИЧЕСКИЙ ДИЗАЙН</span><h2>Собери финальный макет<span class="period">.</span></h2><p>Повтори композицию по референсу: положение элементов, размер, угол и цвет влияют на оценку.</p><div class="brief-summary"><strong id="poster-brief-title">Доработка · композиция</strong><span id="poster-brief-reason">Задание зависит от прохождения маршрута.</span><small id="poster-rules">Сходство макета даёт до 55 баллов.</small></div></div><span class="studio-app-name">✦ ВЕКТОРНАЯ МАСТЕРСКАЯ</span></header>
+      <div class="studio-layout"><div class="poster-panel"><div class="panel-title"><span>01 · РЕФЕРЕНС</span><span>Задание преподавателя</span></div><canvas id="reference-canvas" width="300" height="420" aria-label="Референс постера"></canvas></div>
+      <div class="poster-panel"><div class="panel-title"><span>02 · ТВОЙ МАКЕТ</span><span>Перетащи формы</span></div><canvas id="work-canvas" width="300" height="420" aria-label="Редактируемый постер"></canvas></div>
+      <aside class="editor-tools"><span class="tool-kicker">СЛОИ</span><div class="layer-list"><button type="button" data-layer="circle">● Солнце</button><button type="button" data-layer="arch">▥ Арка</button><button type="button" data-layer="bar">▬ Акцент</button><button type="button" data-layer="title">T Заголовок</button></div><p>Выбрано: <strong id="selected-layer">Солнце</strong></p><span class="tool-kicker">ЦВЕТ</span><div class="color-list"><button type="button" data-color="#dc7f67" style="--swatch:#dc7f67" aria-label="Коралловый"></button><button type="button" data-color="#2f535b" style="--swatch:#2f535b" aria-label="Тёмно-бирюзовый"></button><button type="button" data-color="#76a49a" style="--swatch:#76a49a" aria-label="Мятный"></button><button type="button" data-color="#e9bb73" style="--swatch:#e9bb73" aria-label="Золотистый"></button></div><span class="tool-kicker">ТРАНСФОРМАЦИЯ</span><div class="adjust-list"><button type="button" data-adjust="smaller" aria-label="Уменьшить">−</button><button type="button" data-adjust="larger" aria-label="Увеличить">＋</button><button type="button" data-adjust="rotate-left" aria-label="Повернуть влево">↶</button><button type="button" data-adjust="rotate-right" aria-label="Повернуть вправо">↷</button></div><button id="guides-btn" class="guide-btn" type="button" aria-pressed="false">◎ Показать направляющие</button><p class="tool-hint">Элемент можно двигать мышью, пальцем или стрелками после выбора слоя.</p></aside></div>
+      <div class="studio-footer"><div id="poster-feedback" role="status">Перетащи элементы постера, подбери цвет, размер и поворот.</div><div class="studio-actions"><button id="poster-reset" type="button">↻ Сбросить</button><button id="poster-check" type="button">Проверить и получить совет</button><button id="poster-submit" class="primary" type="button">Сдать на защиту →</button></div></div>
+    </div>
+  </section>
+  <script type="module" src="main.js"></script>
+</body>
+</html>
